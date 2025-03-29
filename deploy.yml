@@ -1,0 +1,14 @@
+- hosts: web
+  become: yes
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Pull Docker Image
+      command: docker pull your-dockerhub-user/devops-capstone:latest
+
+    - name: Run Container
+      command: docker run -d -p 80:80 your-dockerhub-user/devops-capstone:latest
